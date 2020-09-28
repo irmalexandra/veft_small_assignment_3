@@ -75,7 +75,7 @@ server.post("/api/pinatas", function(request, response){
 
 //====================================== PATCH ======================================//
 
-server.patch("/api/pinatas/:id", function(request, response){
+server.patch("/api/pinatas/:id/hit", function(request, response){
     let pinata = pinataService.getPinataById();
     response.status(200);
     return response.json(pinata);
