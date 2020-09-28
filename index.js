@@ -43,6 +43,7 @@ server.get("/api/offers", function(request, response){
 server.get("/api/pinatas", function(request, response){
     let pinatas = pinataService.getAllPinatas();
     response.status(200);
+
     return response.json(pinatas);
 });
 
@@ -54,21 +55,27 @@ server.get("/api/pinatas/:id", function(request, response){
     } else{
         response.status(404);
     }
-    return response.json(pinata);
+    let json_res = {
+        "id": pinata.id,
+        "name": pinata.name,
+        "maximumHits": pinata.maximumHits,
+        "currentHits": pinata.currentHits
+    };
+    return response.json(json_res);
 });
 
 
 //====================================== POST ======================================//
 
 server.post("/api/candies", function(request, response){
-    const candy = request.body
-    const returned_candy = candyService.createCandy(candy)
+    const candy = request.body;
+    const returned_candy = candyService.createCandy(candy);
     return response.status(200).json(returned_candy);
 });
 
 server.post("/api/pinatas", function(request, response){
-    const pinata = request.body
-    const returned_pinata = pinataService.createPinata(pinata)
+    const pinata = request.body;
+    const returned_pinata = pinataService.createPinata(pinata);
     return response.status(200).json(returned_pinata);
 });
 
@@ -76,7 +83,7 @@ server.post("/api/pinatas", function(request, response){
 //====================================== PATCH ======================================//
 
 server.patch("/api/pinatas/:id/hit", function(request, response){
-    let pinata = pinataService.getPinataById();
-    response.status(200);
-    return response.json(pinata);
+    let pinata = pinataService.getPinataById(request.params.id);
+    const data = pinataService.hitPinata(pinata);
+    return response.status(data.statusCode).json(data.content);
 });

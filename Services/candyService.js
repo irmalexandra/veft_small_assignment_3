@@ -1,28 +1,27 @@
-const getCandyModel = require("../Models/candy");
+const getCandyModel = require("../Models/candy").getCandyModel;
 const pinataModel = require("../Models/pinata").pinata;
 const offerModel = require("../Models/offer").offer;
-const data = require("../Data/data.json")
+const data = require("../Data/data.json");
 
 
 const candyService = () => {
+    let allCandies = data.candies;
 
     const getAllCandies = () => {
-        return data.candies;
+        return allCandies;
     };
 
     const getCandyById = id => {
-        const allCandies = getAllCandies()
         for (let i = 0; i < allCandies.length; i++){
-            if (allCandies[i].id == id){
+            if (allCandies[i].id === parseInt(id)){
                 return allCandies[i];
             }
         }
         return null;
-    }
+    };
 
     const createCandy = candy => {
         let newCandy = getCandyModel();
-        const allCandies = getAllCandies();
 
         newCandy.name = candy.name;
         newCandy.description = candy.description;
@@ -30,7 +29,7 @@ const candyService = () => {
 
         allCandies.push(newCandy);
         return newCandy;
-    }
+    };
 
     return {
         getAllCandies,

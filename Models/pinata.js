@@ -3,6 +3,6 @@ module.exports.getPinataModel = () => {
         "id": Number,
         "name": String,
         "maximumHits": Number,
-        "currentHits": 0
+        "surprise": ""
     };
 };
