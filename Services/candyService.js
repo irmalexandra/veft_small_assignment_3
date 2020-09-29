@@ -1,6 +1,4 @@
 const getCandyModel = require("../Models/candy").getCandyModel;
-const pinataModel = require("../Models/pinata").pinata;
-const offerModel = require("../Models/offer").offer;
 const data = require("../Data/data.json");
 
 

@@ -1,5 +1,4 @@
 const getPinataModel = require("../Models/Pinata").getPinataModel;
-const offerModel = require("../Models/offer").offer;
 const data = require("../Data/data.json");
 
 const fs = require('fs');
